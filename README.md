@@ -22,6 +22,10 @@ elements. Model parameters are provided by the semiconductor manufacturers.
 The user add her circuits as a netlist, and the output is one or more graphs of
 currents, voltages and other electrical quantities or is saved in a data file.
 
+Note:
+  This build was configured with --enable-xspice --enable-cider --enable=openmp
+  See the [build script](https://git.io/Jf0vv) for more specifics.
+
 
 Current build status
 ====================
