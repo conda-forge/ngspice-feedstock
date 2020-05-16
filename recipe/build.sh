@@ -25,7 +25,7 @@ configure_args=(
 #
 mkdir release-lib && cd release-lib
 ../configure "${configure_args[@]}" --with-ngshared
-make
+make -j${CPU_COUNT}
 make install
 cd -
 
@@ -35,6 +35,6 @@ cd -
 #
 mkdir release-bin && cd release-bin
 ../configure "${configure_args[@]}" --with-x
-make
+make -j${CPU_COUNT}
 make install
 cd -
