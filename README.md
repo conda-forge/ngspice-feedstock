@@ -23,7 +23,7 @@ The user add her circuits as a netlist, and the output is one or more graphs of
 currents, voltages and other electrical quantities or is saved in a data file.
 
 Note:
-  This build was configured with --enable-xspice --enable-cider --enable=openmp
+  This build was configured with `--enable-xspice --enable-cider --enable=openmp`
   See the [build script](https://git.io/Jf0vv) for more specifics.
 
 
@@ -83,7 +83,9 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
-| [![Conda Recipe](https://img.shields.io/badge/recipe-ngspice-green.svg)](https://anaconda.org/conda-forge/ngspice) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ngspice.svg)](https://anaconda.org/conda-forge/ngspice) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ngspice.svg)](https://anaconda.org/conda-forge/ngspice) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ngspice.svg)](https://anaconda.org/conda-forge/ngspice) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-ngspice--exe-green.svg)](https://anaconda.org/conda-forge/ngspice-exe) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ngspice-exe.svg)](https://anaconda.org/conda-forge/ngspice-exe) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ngspice-exe.svg)](https://anaconda.org/conda-forge/ngspice-exe) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ngspice-exe.svg)](https://anaconda.org/conda-forge/ngspice-exe) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-ngspice--gui-green.svg)](https://anaconda.org/conda-forge/ngspice-gui) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ngspice-gui.svg)](https://anaconda.org/conda-forge/ngspice-gui) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ngspice-gui.svg)](https://anaconda.org/conda-forge/ngspice-gui) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ngspice-gui.svg)](https://anaconda.org/conda-forge/ngspice-gui) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-ngspice--lib-green.svg)](https://anaconda.org/conda-forge/ngspice-lib) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ngspice-lib.svg)](https://anaconda.org/conda-forge/ngspice-lib) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ngspice-lib.svg)](https://anaconda.org/conda-forge/ngspice-lib) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ngspice-lib.svg)](https://anaconda.org/conda-forge/ngspice-lib) |
 
 Installing ngspice
 ==================
@@ -94,16 +96,16 @@ Installing `ngspice` from the `conda-forge` channel can be achieved by adding `c
 conda config --add channels conda-forge
 ```
 
-Once the `conda-forge` channel has been enabled, `ngspice` can be installed with:
+Once the `conda-forge` channel has been enabled, `ngspice-exe, ngspice-gui, ngspice-lib` can be installed with:
 
 ```
-conda install ngspice
+conda install ngspice-exe ngspice-gui ngspice-lib
 ```
 
-It is possible to list all of the versions of `ngspice` available on your platform with:
+It is possible to list all of the versions of `ngspice-exe` available on your platform with:
 
 ```
-conda search ngspice --channel conda-forge
+conda search ngspice-exe --channel conda-forge
 ```
 
 
