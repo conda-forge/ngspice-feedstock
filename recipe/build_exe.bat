@@ -31,7 +31,7 @@ msbuild.exe ^
   visualc\vngspice.sln ^
   || goto :error
 
-make-install-vngspice.bat visualc\Release\ngspice_con.exe 64
+call visualc\make-install-vngspice.bat visualc\Release\ngspice_con.exe 64
 
 
 REM msbuild.exe ^

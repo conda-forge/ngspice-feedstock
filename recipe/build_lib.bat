@@ -31,4 +31,4 @@ msbuild.exe ^
   visualc\sharedspice.sln ^
   || goto :error
 
-make-install-vngspice.bat visualc\Release\ngspice.dll 64
+call visualc\make-install-vngspice.bat visualc\Release\ngspice.dll 64
