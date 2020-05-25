@@ -7,6 +7,7 @@ set PLATFORM=x64
 msbuild.exe ^
   /p:Platform=%PLATFORM% ^
   /p:PlatformToolset=v141 ^
+  /p:WindowsTargetPlatformVersion=10.0.17763.0 ^
   /p:Configuration=ReleaseOMP ^
   /p:PostBuildEvent="" ^
   visualc/sharedspice.sln ^
