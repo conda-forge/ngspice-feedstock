@@ -114,7 +114,7 @@ about:
 
     Note:
       This build was configured with `--enable-xspice --enable-cider --enable=openmp`
-      See the [build script](https://git.io/Jf0vv) for more specifics.
+      See the [build script](https://git.io/JfVZX) for more specifics.
 
 extra:
   recipe-maintainers:
