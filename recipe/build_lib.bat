@@ -1,3 +1,5 @@
+@echo on
+
 if "%ARCH%"=="32" (
 set PLATFORM=x86
 ) else (
@@ -8,6 +10,8 @@ REM The windows build expects flex-bison to be in a special location
 mkdir ..\flex-bison
 copy %LIBRARY_BIN%\win_bison.exe ..\flex-bison\
 copy %LIBRARY_BIN%\win_flex.exe ..\flex-bison\
+
+dir ../flex-bison
 
 msbuild.exe ^
   /p:Platform=%PLATFORM% ^
