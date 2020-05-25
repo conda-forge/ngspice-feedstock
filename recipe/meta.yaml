@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://ayera.dl.sourceforge.net/project/ngspice/ng-spice-rework/{{version}}/ngspice-{{version}}.tar.gz
+  url: https://ayera.dl.sourceforge.net/project/ngspice/ng-spice-rework/{{ version }}/ngspice-{{ version }}.tar.gz
   sha256: 3cd90c4e94516d87c5b4d02a3a6405b1136b25d05c871d4fee1fd7c4c0d03ef2
 
   patches:
@@ -42,7 +42,7 @@ outputs:
 
     test:
       commands:
-        - test -f $PREFIX/lib/libngspice{{SHLIB_EXT}}
+        - test -f $PREFIX/lib/libngspice{{ SHLIB_EXT }}
 
   - name: ngspice-exe
     script: build_exe.sh  # [unix]
@@ -82,6 +82,11 @@ outputs:
       run:
         - {{ pin_subpackage('ngspice-lib', max_pin="x.x.x.x") }}
         - {{ pin_subpackage('ngspice-exe', max_pin="x.x.x.x") }}
+
+    test:
+      commands:
+        - test -f $PREFIX/lib/libngspice{{ SHLIB_EXT }}
+        - $PREFIX/bin/ngspice --version
 
 about:
   home: http://ngspice.sourceforge.net
