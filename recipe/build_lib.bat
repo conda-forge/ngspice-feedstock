@@ -1,5 +1,8 @@
 @echo on
 
+echo %cd%
+echo %LIBRARY_BIN%
+
 if "%ARCH%"=="32" (
 set PLATFORM=x86
 ) else (
@@ -8,8 +11,14 @@ set PLATFORM=x64
 
 REM The windows build expects flex-bison to be in a special location
 mkdir ..\flex-bison
-copy %LIBRARY_BIN%\win_bison.exe ..\flex-bison\
-copy %LIBRARY_BIN%\win_flex.exe ..\flex-bison\
+mkdir ..\flex-bison\data
+mkdir ..\flex-bison\custom_build_rules
+
+copy %LIBRARY_PREFIX%\bin\win_bison.exe ..\flex-bison\
+copy %LIBRARY_PREFIX%\bin\win_flex.exe ..\flex-bison\
+copy %LIBRARY_PREFIX%\include\FlexLexer.h ..\flex-bison\
+xcopy %LIBRARY_PREFIX%\share\winflexbison\data\* ..\flex-bison\data\ /s /e /f /c /h /r /k /y
+xcopy %LIBRARY_PREFIX%\share\winflexbison\custom_build_rules\* ..\flex-bison\custom_build_rules\ /s /e /f /c /h /r /k /y
 
 dir ../flex-bison
 
