@@ -14,38 +14,74 @@ source:
 
 build:
   skip: true  # [win]
-  number: 1
+  number: 2
 
-requirements:
-  build:
-    - {{ compiler('c') }}
-    - llvm-openmp  # [osx]
-    - libgomp      # [linux]
-    - autoconf
-    - automake
-    - libtool
-    - texinfo
-    - bison
-    - flex
+outputs:
+  - name: ngspice-lib
+    script: build_lib.sh  # [unix]
 
-  host:
-    - ncurses
-    - readline
-    - xorg-libx11
-    - xorg-libxaw
-    - xorg-libxt
-  
-  run:
-    - ncurses
-    - readline
-    - xorg-libx11
-    - xorg-libxaw
-    - xorg-libxt
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - llvm-openmp  # [osx]
+        - libgomp      # [linux]
+        - autoconf
+        - automake
+        - libtool
+        - texinfo
+        - bison
+        - flex
 
-test:
-  commands:
-    - test -f $PREFIX/lib/libngspice{{SHLIB_EXT}}
-    - $PREFIX/bin/ngspice --version
+      host:
+        - ncurses
+        - readline
+
+      run:
+        - ncurses
+        - readline
+
+    test:
+      commands:
+        - test -f $PREFIX/lib/libngspice{{SHLIB_EXT}}
+
+  - name: ngspice-exe
+    script: build_exe.sh  # [unix]
+
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - llvm-openmp  # [osx]
+        - libgomp      # [linux]
+        - autoconf
+        - automake
+        - libtool
+        - texinfo
+        - bison
+        - flex
+
+      host:
+        - ncurses
+        - readline
+        - xorg-libx11
+        - xorg-libxaw
+        - xorg-libxt
+
+      run:
+        - ncurses
+        - readline
+        - xorg-libx11
+        - xorg-libxaw
+        - xorg-libxt
+
+    test:
+      commands:
+        - $PREFIX/bin/ngspice --version
+
+  - name: ngspice
+    requirements:
+      run:
+        - {{ pin_subpackage('ngspice-lib', max_pin="x.x.x.x") }}
+        - {{ pin_subpackage('ngspice-exe', max_pin="x.x.x.x") }}
 
 about:
   home: http://ngspice.sourceforge.net
@@ -72,7 +108,7 @@ about:
     currents, voltages and other electrical quantities or is saved in a data file.
 
     Note:
-      This build was configured with --enable-xspice --enable-cider --enable=openmp
+      This build was configured with `--enable-xspice --enable-cider --enable=openmp`
       See the [build script](https://git.io/Jf0vv) for more specifics.
 
 extra:
