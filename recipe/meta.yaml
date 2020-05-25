@@ -108,6 +108,10 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+
+      host:
+        # technically this ought to be in the 'build' requirements,
+        # but it's easier to locate if we put it here, via LIBRARY_BIN
         - winflexbison
 
     test:
@@ -120,6 +124,10 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+
+      host:
+        # technically this ought to be in the 'build' requirements,
+        # but it's easier to locate if we put it here, via LIBRARY_BIN
         - winflexbison
 
     test:
