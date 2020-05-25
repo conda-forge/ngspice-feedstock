@@ -1,0 +1,56 @@
+diff --git a/visualc/make-install-vngspice.bat b/visualc/make-install-vngspice.bat
+index 1f20a5534..a4d898660 100644
+--- a/visualc/make-install-vngspice.bat
++++ b/visualc/make-install-vngspice.bat
+@@ -1,13 +1,13 @@
+ @echo off
+ 
+-REM copy ngspice.exe, codemodels *.cm to C:\Spice or Spice64
++REM copy ngspice.exe or ngspice.dll, codemodels *.cm to C:\Spice or Spice64
+ REM arguments to make-install-vngspiced:
+-REM %1: path to ngspice.exe, %2, %3: fftw or 64 (64 bit)
++REM %1: path to ngspice.exe or ngspice.dll, %2, %3: fftw or 64 (64 bit)
+ 
+ if "%2" == "64" goto b64
+ if "%3" == "64" goto b64
+ 
+-set dst=c:\Spice
++set dst=%PREFIX%
+ set cmsrc=.\codemodels\Win32\Release
+ 
+ mkdir %dst%\bin
+@@ -27,17 +27,17 @@ copy .\spinitr .\spinit
+ if "%2" == "fftw" goto copy2
+ if "%3" == "fftw" goto copy2
+ 
+-copy %1\ngspice.exe %dst%\bin\
++copy %1 %dst%\bin\
+ goto end
+ 
+ :copy2
+-copy %1\ngspice.exe %dst%\bin\
++copy %1 %dst%\bin\
+ copy ..\..\fftw-3.3-dll32\libfftw3-3.dll %dst%\bin\
+ goto end
+ 
+ :b64
+ 
+-set dst=c:\Spice64
++set dst=%PREFIX%
+ set cmsrc=.\codemodels\x64\Release
+ 
+ mkdir %dst%\bin
+@@ -57,11 +57,11 @@ copy .\spinitr64 .\spinit
+ if "%2" == "fftw" goto copy2-64
+ if "%3" == "fftw" goto copy2-64
+ 
+-copy %1\ngspice.exe %dst%\bin\
++copy %1 %dst%\bin\
+ goto end
+ 
+ :copy2-64
+-copy %1\ngspice.exe %dst%\bin\
++copy %1 %dst%\bin\
+ copy ..\..\fftw-3.3-dll64\libfftw3-3.dll %dst%\bin\
+ 
+ :end

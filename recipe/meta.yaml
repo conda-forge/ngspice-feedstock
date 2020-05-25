@@ -11,14 +11,23 @@ source:
 
   patches:
    - patches/libtoolize-name.patch  # [osx]
+   - patches/vngspice-install-location.patch  # [win]
 
 build:
-  skip: true  # [win]
-  number: 2
+  number: 3
+  skip: True  # [win and vc<14]
 
+# Due to how 'conda render' extracts metadata info, the 'outputs'
+# key must appear OUTSIDE of the jinja conditional below!
 outputs:
+
+##
+## UNIX
+##
+{% if unix %}
+
   - name: ngspice-lib
-    script: build_lib.sh  # [unix]
+    script: build_lib.sh
 
     requirements:
       build:
@@ -45,7 +54,7 @@ outputs:
         - test -f $PREFIX/lib/libngspice{{ SHLIB_EXT }}
 
   - name: ngspice-exe
-    script: build_exe.sh  # [unix]
+    script: build_exe.sh
 
     requirements:
       build:
@@ -87,6 +96,48 @@ outputs:
       commands:
         - test -f $PREFIX/lib/libngspice{{ SHLIB_EXT }}
         - $PREFIX/bin/ngspice --version
+
+##
+## WINDOWS
+##
+{% else %}
+
+  - name: ngspice-lib
+    script: build_lib.bat
+
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - winflexbison
+
+    test:
+      commands:
+        - if not exist %PREFIX%\\bin\\ngspice.dll exit 1
+
+  - name: ngspice-exe
+    script: build_exe.bat
+
+    requirements:
+      build:
+        - {{ compiler('c') }}
+        - winflexbison
+
+    test:
+      commands:
+        - "%PREFIX%\\bin\\ngspice_con.exe --version"
+
+  - name: ngspice
+    requirements:
+      run:
+        - {{ pin_subpackage('ngspice-lib', max_pin="x.x.x.x") }}
+        - {{ pin_subpackage('ngspice-exe', max_pin="x.x.x.x") }}
+
+    test:
+      commands:
+        - if not exist %PREFIX%\\bin\\ngspice.dll exit 1
+        - "%PREFIX%\\bin\\ngspice_con.exe --version"
+
+{% endif %}
 
 about:
   home: http://ngspice.sourceforge.net
