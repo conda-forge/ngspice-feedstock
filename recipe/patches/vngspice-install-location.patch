@@ -1,9 +1,10 @@
 diff --git a/visualc/make-install-vngspice.bat b/visualc/make-install-vngspice.bat
-index 1f20a5534..a4d898660 100644
+index 1f20a5534..8133368e8 100644
 --- a/visualc/make-install-vngspice.bat
 +++ b/visualc/make-install-vngspice.bat
 @@ -1,13 +1,13 @@
- @echo off
+-@echo off
++@echo on
  
 -REM copy ngspice.exe, codemodels *.cm to C:\Spice or Spice64
 +REM copy ngspice.exe or ngspice.dll, codemodels *.cm to C:\Spice or Spice64
