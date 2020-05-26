@@ -34,7 +34,10 @@ msbuild.exe ^
   vngspice.sln ^
   || goto :error
 
-call make-install-vngspice.bat Release\ngspice_con.exe 64
+dir .
+dir vngspice\console_release_omp.x64
+
+call make-install-vngspice.bat vngspice\console_release_omp.x64\ngspice_con.exe 64
 
 
 REM msbuild.exe ^
@@ -46,4 +49,7 @@ REM   /p:PostBuildEvent="" ^
 REM   vngspice.sln ^
 REM   || goto :error
 
-REM make-install-vngspice.bat Release\ngspice.exe 64
+REM dir .
+REM dir vngspice\ReleaseOMP.x64
+
+REM make-install-vngspice.bat vngspice\ReleaseOMP.x64\\ngspice.exe 64

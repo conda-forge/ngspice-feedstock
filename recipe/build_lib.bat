@@ -34,4 +34,7 @@ msbuild.exe ^
   sharedspice.sln ^
   || goto :error
 
-call make-install-vngspice.bat Release\ngspice.dll 64
+dir .
+dir sharedspice\ReleaseOMP.x64
+
+call make-install-vngspice.bat sharedspice\ReleaseOMP.x64\ngspice.dll 64
