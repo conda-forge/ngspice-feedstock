@@ -37,6 +37,8 @@ msbuild.exe ^
 dir .
 dir vngspice\console_release_omp.x64
 
+REM Rename to ngspice_con.exe, following ngspice's own Windows zip file conventions.
+move vngspice\console_release_omp.x64\ngspice.exe vngspice\console_release_omp.x64\ngspice_con.exe
 call make-install-vngspice.bat vngspice\console_release_omp.x64\ngspice_con.exe 64
 
 

@@ -132,7 +132,7 @@ outputs:
 
     test:
       commands:
-        - "%PREFIX%\\bin\\ngspice_con.exe --version"
+        - "call %PREFIX%\\bin\\ngspice_con.exe --version"
 
   - name: ngspice
     requirements:
