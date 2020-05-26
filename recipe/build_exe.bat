@@ -42,16 +42,16 @@ move vngspice\console_release_omp.x64\ngspice.exe vngspice\console_release_omp.x
 call make-install-vngspice.bat vngspice\console_release_omp.x64\ngspice_con.exe 64
 
 
-REM msbuild.exe ^
-REM   /p:Platform=%PLATFORM% ^
-REM   /p:PlatformToolset=v141 ^
-REM   /p:WindowsTargetPlatformVersion=10.0.17763.0 ^
-REM   /p:Configuration=ReleaseOMP ^
-REM   /p:PostBuildEvent="" ^
-REM   vngspice.sln ^
-REM   || goto :error
+msbuild.exe ^
+  /p:Platform=%PLATFORM% ^
+  /p:PlatformToolset=v141 ^
+  /p:WindowsTargetPlatformVersion=10.0.17763.0 ^
+  /p:Configuration=ReleaseOMP ^
+  /p:PostBuildEvent="" ^
+  vngspice.sln ^
+  || goto :error
 
-REM dir .
-REM dir vngspice\ReleaseOMP.x64
+dir .
+dir vngspice\ReleaseOMP.x64
 
-REM make-install-vngspice.bat vngspice\ReleaseOMP.x64\\ngspice.exe 64
+make-install-vngspice.bat vngspice\ReleaseOMP.x64\ngspice.exe 64
