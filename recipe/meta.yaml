@@ -15,7 +15,17 @@ source:
 
 build:
   number: 1
-  skip: True  # [win and vc<14]
+
+  # Apparently the .sln or .vcproj file for version 30 is not the same as the one for version 32,
+  # so the Windows build errors out with:
+  #
+  #   MSBUILD : error MSB1009: Project file does not exist.
+  #   Switch: sharedspice.sln
+  #   The system cannot find the batch label specified - error
+  #
+  # Since a Windows build of version 30 is not a priority for me,
+  # I'm not fixing this now.  But someone else can try a PR if they want to.
+  skip: True  # [win]
 
 # Due to how 'conda render' extracts metadata info, the 'outputs'
 # key must appear OUTSIDE of the jinja conditional below!
