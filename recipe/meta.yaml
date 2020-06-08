@@ -1,5 +1,5 @@
 {% set name = "ngspice" %}
-{% set version = "32" %}
+{% set version = "31" %}
 
 package:
   name: {{ name|lower }}
@@ -7,14 +7,14 @@ package:
 
 source:
   url: https://ayera.dl.sourceforge.net/project/ngspice/ng-spice-rework/{{ version }}/ngspice-{{ version }}.tar.gz
-  sha256: 3cd90c4e94516d87c5b4d02a3a6405b1136b25d05c871d4fee1fd7c4c0d03ef2
+  sha256: 845f3b0c962e47ded051dfbc134c3c1e4ac925c9f0ce1cb3df64eb9b9da5c282
 
   patches:
    - patches/libtoolize-name.patch  # [osx]
    - patches/vngspice-install-location.patch  # [win]
 
 build:
-  number: 4
+  number: 2
   skip: True  # [win and vc<14]
 
 # Due to how 'conda render' extracts metadata info, the 'outputs'
