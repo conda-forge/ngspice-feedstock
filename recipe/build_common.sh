@@ -14,7 +14,6 @@ configure_args=(
   --enable-cider
   --with-readline=yes
   --enable-openmp
-  --enable-relpath
 
   # Not enabled for now:
   #  --enable-adms
