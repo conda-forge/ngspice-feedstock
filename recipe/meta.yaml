@@ -1,21 +1,31 @@
 {% set name = "ngspice" %}
-{% set version = "32" %}
+{% set version = "30" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://ayera.dl.sourceforge.net/project/ngspice/ng-spice-rework/{{ version }}/ngspice-{{ version }}.tar.gz
-  sha256: 3cd90c4e94516d87c5b4d02a3a6405b1136b25d05c871d4fee1fd7c4c0d03ef2
+  url: https://phoenixnap.dl.sourceforge.net/project/ngspice/ng-spice-rework/old-releases/{{ version }}/ngspice-{{ version }}.tar.gz
+  sha256: 08fe0e2f3768059411328a33e736df441d7e6e7304f8dad0ed5f28e15d936097
 
   patches:
    - patches/libtoolize-name.patch  # [osx]
    - patches/vngspice-install-location.patch  # [win]
 
 build:
-  number: 4
-  skip: True  # [win and vc<14]
+  number: 1
+
+  # Apparently the .sln or .vcproj file for version 30 is not the same as the one for version 32,
+  # so the Windows build errors out with:
+  #
+  #   MSBUILD : error MSB1009: Project file does not exist.
+  #   Switch: sharedspice.sln
+  #   The system cannot find the batch label specified - error
+  #
+  # Since a Windows build of version 30 is not a priority for me,
+  # I'm not fixing this now.  But someone else can try a PR if they want to.
+  skip: True  # [win]
 
 # Due to how 'conda render' extracts metadata info, the 'outputs'
 # key must appear OUTSIDE of the jinja conditional below!
