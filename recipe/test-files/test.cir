@@ -1,0 +1,13 @@
+.title Astable Multivibrator
+Vcc vcc 0 15V
+R1 output comparator 1kOhm
+C1 comparator 0 100nF
+R2 output reference 100kOhm
+R3 vcc reference 100kOhm
+R4 reference 0 100kOhm
+E1 output 0 TABLE {V(reference, comparator)} = (-1u, 0) (1u, 15V)
+.options TEMP = 25°C
+.options TNOM = 25°C
+.ic V(comparator)=0
+.tran 1us 500us 0s
+.end

@@ -14,7 +14,7 @@ source:
    - patches/vngspice-install-location.patch  # [win]
 
 build:
-  number: 3
+  number: 4
   skip: True  # [win and vc<14]
 
 # Due to how 'conda render' extracts metadata info, the 'outputs'
@@ -83,8 +83,11 @@ outputs:
         - xorg-libxt
 
     test:
+      files:
+        test-files
       commands:
         - $PREFIX/bin/ngspice --version
+        - $PREFIX/bin/ngspice -b -r /tmp/raw.out test-files/test.cir
 
   - name: ngspice
     requirements:
@@ -131,8 +134,11 @@ outputs:
         - winflexbison
 
     test:
+      files:
+        test-files
       commands:
         - "call %PREFIX%\\bin\\ngspice_con.exe --version"
+        - "call %PREFIX%\\bin\\ngspice_con.exe -b -r raw.out test-files\\test.cir"
 
   - name: ngspice
     requirements:
