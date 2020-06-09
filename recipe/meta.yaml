@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://phoenixnap.dl.sourceforge.net/project/ngspice/ng-spice-rework/old-releases/{{ version }}/ngspice-{{ version }}.tar.gz
+  url: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/old-releases/{{ version }}/ngspice-{{ version }}.tar.gz
   sha256: 08fe0e2f3768059411328a33e736df441d7e6e7304f8dad0ed5f28e15d936097
 
   patches:
@@ -14,7 +14,7 @@ source:
    - patches/vngspice-install-location.patch  # [win]
 
 build:
-  number: 2
+  number: 3
 
   # Apparently the .sln or .vcproj file for version 30 is not the same as the one for version 32,
   # so the Windows build errors out with:
