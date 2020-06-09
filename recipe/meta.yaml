@@ -14,7 +14,7 @@ source:
    - patches/vngspice-install-location.patch  # [win]
 
 build:
-  number: 4
+  number: 5
   skip: True  # [win and vc<14]
 
 # Due to how 'conda render' extracts metadata info, the 'outputs'
@@ -92,8 +92,8 @@ outputs:
   - name: ngspice
     requirements:
       run:
-        - {{ pin_subpackage('ngspice-lib', max_pin="x.x.x.x") }}
-        - {{ pin_subpackage('ngspice-exe', max_pin="x.x.x.x") }}
+        - {{ pin_subpackage('ngspice-lib', exact=True) }}
+        - {{ pin_subpackage('ngspice-exe', exact=True) }}
 
     test:
       commands:
@@ -143,8 +143,8 @@ outputs:
   - name: ngspice
     requirements:
       run:
-        - {{ pin_subpackage('ngspice-lib', max_pin="x.x.x.x") }}
-        - {{ pin_subpackage('ngspice-exe', max_pin="x.x.x.x") }}
+        - {{ pin_subpackage('ngspice-lib', exact=True) }}
+        - {{ pin_subpackage('ngspice-exe', exact=True) }}
 
     test:
       commands:
