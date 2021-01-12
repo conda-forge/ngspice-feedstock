@@ -11,8 +11,8 @@ source:
   sha256: b99db66cc1c57c44e9af1ef6ccb1dcbc8ae1df3e35acf570af578f606f8541f1
 
   patches:
-    - patches/libtoolize-name.patch # [osx]
-    - patches/vngspice-install-location.patch # [win]
+    - patches/libtoolize-name.patch  # [osx]
+    - patches/vngspice-install-location.patch  # [win]
 
 build:
   number: 0
