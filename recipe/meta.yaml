@@ -1,5 +1,5 @@
 {% set name = "ngspice" %}
-{% set version = "32" %}
+{% set version = "34" %}
 
 package:
   name: {{ name|lower }}
@@ -8,15 +8,15 @@ package:
 source:
 
   url: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/{{ version }}/ngspice-{{ version }}.tar.gz
-  sha256: 3cd90c4e94516d87c5b4d02a3a6405b1136b25d05c871d4fee1fd7c4c0d03ef2
+  sha256: 2263fffc6694754972af7072ef01cfe62ac790800dad651bc290bfcae79bd7b5
 
   patches:
-   - patches/libtoolize-name.patch  # [osx]
-   - patches/vngspice-install-location.patch  # [win]
+    - patches/libtoolize-name.patch # [osx]
+    - patches/vngspice-install-location.patch # [win]
 
 build:
-  number: 6
-  skip: True  # [win and vc<14]
+  number: 0
+  skip: true  # [win and vc<14]
 
 # Due to how 'conda render' extracts metadata info, the 'outputs'
 # key must appear OUTSIDE of the jinja conditional below!
@@ -84,8 +84,7 @@ outputs:
         - xorg-libxt
 
     test:
-      files:
-        test-files
+      files: test-files
       commands:
         - $PREFIX/bin/ngspice --version
         - $PREFIX/bin/ngspice -b -r /tmp/raw.out test-files/test.cir
@@ -135,11 +134,10 @@ outputs:
         - winflexbison
 
     test:
-      files:
-        test-files
+      files: test-files
       commands:
-        - "call %PREFIX%\\bin\\ngspice_con.exe --version"
-        - "call %PREFIX%\\bin\\ngspice_con.exe -b -r raw.out test-files\\test.cir"
+        - call %PREFIX%\bin\ngspice_con.exe --version
+        - call %PREFIX%\bin\ngspice_con.exe -b -r raw.out test-files\test.cir
 
   - name: ngspice
     requirements:
@@ -150,7 +148,7 @@ outputs:
     test:
       commands:
         - if not exist %PREFIX%\\bin\\ngspice.dll exit 1
-        - "%PREFIX%\\bin\\ngspice_con.exe --version"
+        - '%PREFIX%\bin\ngspice_con.exe --version'
 
 {% endif %}
 
@@ -163,16 +161,16 @@ about:
   license_family: BSD
   license_file: COPYING
 
-  summary: 'The open source spice simulator for electric and electronic circuits'
+  summary: The open source spice simulator for electric and electronic circuits
   description: |
     ngspice is the open source spice simulator for electric and electronic circuits.
-    
+
     Such a circuit may comprise of JFETs, bipolar and MOS transistors, passive elements
     like R, L, or C, diodes, transmission lines and other devices, all interconnected
     in a netlist. Digital circuits are simulated as well, event driven and fast, from
     single gates to complex circuits. And you may enter the combination of both analog
     and digital as a mixed-signal circuit.
-    
+
     ngspice offers a wealth of device models for active, passive, analog, and digital
     elements. Model parameters are provided by the semiconductor manufacturers.
     The user add her circuits as a netlist, and the output is one or more graphs of
