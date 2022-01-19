@@ -38,6 +38,9 @@ dir .
 dir sharedspice\ReleaseOMP.x64
 
 REM code models and other files are part of ngspice-exe
+mkdir %PREFIX%\bin
+mkdir %PREFIX%\lib
+mkdir %PREFIX%\include
 copy sharedspice\ReleaseOMP.x64\ngspice.dll %PREFIX%\bin\ngspice.dll
 copy sharedspice\ReleaseOMP.x64\ngspice.pdb %PREFIX%\bin\ngspice.pdb
 copy sharedspice\ReleaseOMP.x64\ngspice.lib %PREFIX%\lib\ngspice.lib
