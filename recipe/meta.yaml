@@ -33,6 +33,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
         - llvm-openmp  # [osx]
         - libgomp      # [linux]
         - autoconf
