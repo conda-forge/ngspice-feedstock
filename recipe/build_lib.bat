@@ -37,4 +37,9 @@ msbuild.exe ^
 dir .
 dir sharedspice\ReleaseOMP.x64
 
-call make-install-vngspice.bat sharedspice\ReleaseOMP.x64\ngspice.dll 64
+REM code models and other files are part of ngspice-exe
+copy sharedspice\ReleaseOMP.x64\ngspice.dll %LIBRARY_PREFIX%\bin\ngspice.dll
+copy sharedspice\ReleaseOMP.x64\ngspice.pdb %LIBRARY_PREFIX%\bin\ngspice.pdb
+copy sharedspice\ReleaseOMP.x64\ngspice.lib %LIBRARY_PREFIX%\lib\ngspice.lib
+copy sharedspice\ReleaseOMP.x64\ngspice.exp %LIBRARY_PREFIX%\lib\ngspice.exp
+copy ..\src\include\ngspice\sharedspice.h %LIBRARY_PREFIX%\include\sharedspice.h
