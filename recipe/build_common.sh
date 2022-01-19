@@ -13,7 +13,6 @@ configure_args=(
   --disable-debug
   --enable-cider
   --with-readline=yes
-  --enable-openmp
 
   # Not enabled for now:
   #  --enable-adms
