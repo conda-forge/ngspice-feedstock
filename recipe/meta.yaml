@@ -41,6 +41,7 @@ outputs:
         - texinfo
         - bison
         - flex
+        - make
 
       host:
         - ncurses
@@ -68,6 +69,7 @@ outputs:
         - texinfo
         - bison
         - flex
+        - make
 
       host:
         - ncurses
