@@ -15,7 +15,7 @@ source:
    - patches/vngspice-install-location.patch  # [win]
 
 build:
-  number: 6
+  number: 7
   skip: True  # [win and vc<14]
 
 # Due to how 'conda render' extracts metadata info, the 'outputs'
