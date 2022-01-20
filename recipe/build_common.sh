@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -x
+set -e
 
 # Used by autotools AX_PROG_CC_FOR_BUILD
 export CC_FOR_BUILD=${CC}
