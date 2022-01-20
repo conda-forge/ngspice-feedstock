@@ -1,4 +1,4 @@
-{% set name = "ngspice" %}
+{% set name = "ngspice-suite" %}
 {% set version = "32" %}
 
 package:
