@@ -12,6 +12,7 @@ configure_args=(
   --prefix=${PREFIX}
   --enable-xspice
   --disable-debug
+  --disable-dependency-tracking
   --enable-cider
   --with-readline=yes
   --enable-openmp
