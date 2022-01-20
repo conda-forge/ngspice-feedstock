@@ -21,7 +21,7 @@ configure_args=(
 )
 
 if [[ ! -z "${BUILD_NGSPICE_LIB}" && ! -z "${BUILD_NGSPICE_EXE}" ]]; then
-  2>&1 echo "Set either BUILD_LIB or BUILD_EXE"
+  2>&1 echo "Set either BUILD_NGSPICE_LIB or BUILD_NGSPICE_EXE"
   exit 1
 fi
 
