@@ -1,0 +1,19 @@
+diff --git src/xspice/icm/makedefs.in src/xspice/icm/makedefs.in
+index e344507ba..06c99c658 100644
+--- src/xspice/icm/makedefs.in
++++ src/xspice/icm/makedefs.in
+@@ -47,12 +47,12 @@ CMPP = @CMPP@
+ LIBS = -lm
+ 
+ # Flags to use when linking shared library
+-LDFLAGS = -shared
++LDFLAGS = -shared @LDFLAGS@
+ ifeq ($(ISMINGW), 1)
+   LDFLAGS = -shared @LDFLAGS@
+ endif
+ ifeq "$(strip $(uname))" "Darwin"
+-  LDFLAGS = -bundle -flat_namespace -undefined suppress
++  LDFLAGS = -shared -undefined dynamic_lookup @LDFLAGS@
+ endif
+ ifeq "$(strip $(uname))" "SunOS"
+   ifneq "$(CC)" "gcc"
