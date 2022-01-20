@@ -43,10 +43,14 @@ outputs:
         - flex
 
       host:
+        - llvm-openmp  # [osx]
+        - libgomp      # [linux]
         - ncurses
         - readline
 
       run:
+        - llvm-openmp  # [osx]
+        - libgomp      # [linux]
         - ncurses
         - readline
 
@@ -70,6 +74,8 @@ outputs:
         - flex
 
       host:
+        - llvm-openmp  # [osx]
+        - libgomp      # [linux]
         - ncurses
         - readline
         - xorg-libx11
@@ -77,6 +83,8 @@ outputs:
         - xorg-libxt
 
       run:
+        - llvm-openmp  # [osx]
+        - libgomp      # [linux]
         - ncurses
         - readline
         - xorg-libx11
