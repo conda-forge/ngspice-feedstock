@@ -3,21 +3,28 @@ MACOSX_DEPLOYMENT_TARGET:
 c_compiler:
 - clang
 c_compiler_version:
-- '9'
+- '11'
 channel_sources:
-- conda-forge,defaults
+- conda-forge
 channel_targets:
 - conda-forge main
+cxx_compiler:
+- clangxx
+cxx_compiler_version:
+- '11'
+llvm_openmp:
+- '11'
 macos_machine:
 - x86_64-apple-darwin13.4.0
-macos_min_version:
-- '10.9'
 ncurses:
-- '6.1'
+- '6'
 pin_run_as_build:
-  ncurses:
-    max_pin: x.x
   readline:
     max_pin: x
 readline:
-- '8.0'
+- '8'
+target_platform:
+- osx-64
+zip_keys:
+- - c_compiler_version
+  - cxx_compiler_version
