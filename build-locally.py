@@ -14,6 +14,10 @@ def setup_environment(ns):
     os.environ["CONFIG"] = ns.config
     os.environ["UPLOAD_PACKAGES"] = "False"
     os.environ["IS_PR_BUILD"] = "True"
+    if ns.debug:
+        os.environ["BUILD_WITH_CONDA_DEBUG"] = "1"
+        if ns.output_id:
+            os.environ["BUILD_OUTPUT_ID"] = ns.output_id
     if "MINIFORGE_HOME" not in os.environ:
         os.environ["MINIFORGE_HOME"] = os.path.join(
             os.path.dirname(__file__), "miniforge3"
@@ -72,6 +76,14 @@ def verify_config(ns):
 def main(args=None):
     p = ArgumentParser("build-locally")
     p.add_argument("config", default=None, nargs="?")
+    p.add_argument(
+        "--debug",
+        action="store_true",
+        help="Setup debug environment using `conda debug`",
+    )
+    p.add_argument(
+        "--output-id", help="If running debug, specify the output to setup."
+    )
 
     ns = p.parse_args(args=args)
     verify_config(ns)
