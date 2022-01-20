@@ -38,6 +38,7 @@ outputs:
         - libgomp      # [linux]
         - autoconf
         - automake
+        - make
         - libtool
         - texinfo
         - bison
@@ -69,6 +70,7 @@ outputs:
         - libgomp      # [linux]
         - autoconf
         - automake
+        - make
         - libtool
         - texinfo
         - bison
