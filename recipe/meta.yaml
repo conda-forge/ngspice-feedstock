@@ -59,7 +59,7 @@ outputs:
 
     test:
       commands:
-        - test -f $LIBRARY_PREFIX/lib/libngspice{{ SHLIB_EXT }}
+        - test -f $PREFIX/lib/libngspice{{ SHLIB_EXT }}
 
   - name: ngspice-exe
     script: build_exe.sh
@@ -100,8 +100,8 @@ outputs:
       files:
         test-files
       commands:
-        - $LIBRARY_PREFIX/bin/ngspice --version
-        - $LIBRARY_PREFIX/bin/ngspice -b -r /tmp/raw.out test-files/test.cir
+        - $PREFIX/bin/ngspice --version
+        - $PREFIX/bin/ngspice -b -r /tmp/raw.out test-files/test.cir
 
   - name: ngspice
     requirements:
@@ -111,8 +111,8 @@ outputs:
 
     test:
       commands:
-        - test -f $LIBRARY_PREFIX/lib/libngspice{{ SHLIB_EXT }}
-        - $LIBRARY_PREFIX/bin/ngspice --version
+        - test -f $PREFIX/lib/libngspice{{ SHLIB_EXT }}
+        - $PREFIX/bin/ngspice --version
 
 ##
 ## WINDOWS
