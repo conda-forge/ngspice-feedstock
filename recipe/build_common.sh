@@ -9,7 +9,7 @@ export CC_FOR_BUILD=${CC}
 ./autogen.sh
 
 configure_args=(
-  --prefix=${PREFIX}
+  --prefix=${LIBRARY_PREFIX}
   --enable-xspice
   --disable-debug
   --disable-dependency-tracking
