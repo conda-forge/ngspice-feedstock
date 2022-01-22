@@ -41,8 +41,9 @@ REM code models and other files are part of ngspice-exe
 mkdir %PREFIX%\bin
 mkdir %PREFIX%\lib
 mkdir %PREFIX%\include
+mkdir %PREFIX%\include\ngspice
 copy sharedspice\ReleaseOMP.x64\ngspice.dll %PREFIX%\bin\ngspice.dll
 copy sharedspice\ReleaseOMP.x64\ngspice.pdb %PREFIX%\bin\ngspice.pdb
 copy sharedspice\ReleaseOMP.x64\ngspice.lib %PREFIX%\lib\ngspice.lib
 copy sharedspice\ReleaseOMP.x64\ngspice.exp %PREFIX%\lib\ngspice.exp
-copy ..\src\include\ngspice\sharedspice.h %PREFIX%\include\sharedspice.h
+copy ..\src\include\ngspice\sharedspice.h %PREFIX%\include\ngpsice\sharedspice.h
