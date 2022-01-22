@@ -164,7 +164,7 @@ outputs:
 
     test:
       commands:
-        - if not exist %PREFIX%\\bin\\ngspice.dll exit 1
+        - if not exist %LIBRARY_PREFIX%\\bin\\ngspice.dll exit 1
         - "%LIBRARY_PREFIX%\\bin\\ngspice_con.exe --version"
 
 {% endif %}
