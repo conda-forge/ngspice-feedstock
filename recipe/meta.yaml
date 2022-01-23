@@ -16,7 +16,7 @@ source:
     - patches/vngspice-install-location.patch  # [win]
 
 build:
-  number: 6
+  number: 7
   skip: True  # [win and vc<14]
 
 # Due to how 'conda render' extracts metadata info, the 'outputs'
@@ -134,7 +134,7 @@ outputs:
 
     test:
       commands:
-        - if not exist %PREFIX%\\bin\\ngspice.dll exit 1
+        - if not exist %LIBRARY_PREFIX%\\bin\\ngspice.dll exit 1
 
   - name: ngspice-exe
     script: build_exe.bat
@@ -153,8 +153,8 @@ outputs:
       files:
         test-files
       commands:
-        - "call %PREFIX%\\bin\\ngspice_con.exe --version"
-        - "call %PREFIX%\\bin\\ngspice_con.exe -b -r raw.out test-files\\test.cir"
+        - "call %LIBRARY_PREFIX%\\bin\\ngspice_con.exe --version"
+        - "call %LIBRARY_PREFIX%\\bin\\ngspice_con.exe -b -r raw.out test-files\\test.cir"
 
   - name: ngspice
     requirements:
@@ -164,8 +164,8 @@ outputs:
 
     test:
       commands:
-        - if not exist %PREFIX%\\bin\\ngspice.dll exit 1
-        - "%PREFIX%\\bin\\ngspice_con.exe --version"
+        - if not exist %LIBRARY_PREFIX%\\bin\\ngspice.dll exit 1
+        - "%LIBRARY_PREFIX%\\bin\\ngspice_con.exe --version"
 
 {% endif %}
 
