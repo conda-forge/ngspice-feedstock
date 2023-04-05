@@ -1,5 +1,5 @@
 {% set name = "ngspice-suite" %}
-{% set version = "38" %}
+{% set version = "40" %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +8,7 @@ package:
 source:
 
   url: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/{{ version }}/ngspice-{{ version }}.tar.gz
-  sha256: 2c3e22f6c47b165db241cf355371a0a7558540ab2af3f8b5eedeeb289a317c56
+  sha256: e303ca7bc0f594e2d6aa84f68785423e6bf0c8dad009bb20be4d5742588e890d
 
   patches:
     - patches/libtoolize-name.patch            # [osx]
