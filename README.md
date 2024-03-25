@@ -1,11 +1,11 @@
-About ngspice-suite
-===================
+About ngspice-suite-feedstock
+=============================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ngspice-feedstock/blob/main/LICENSE.txt)
 
 Home: http://ngspice.sourceforge.net
 
 Package license: BSD-3-Clause
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ngspice-feedstock/blob/main/LICENSE.txt)
 
 Summary: The open source spice simulator for electric and electronic circuits
 
