@@ -3,6 +3,13 @@ set -ex
 
 ./autogen.sh
 
+# Seems like with-x and with-ngshared are mutually exclusive
+if [[ ${PKG_NAME} != "ngspice-exe" ]]; then
+    WITH_OPTION="--with-x"
+else
+    WITH_OPTION="--with-ngshared"
+fi
+
 ./configure \
     --prefix=${PREFIX} \
     --enable-xspice \
@@ -11,17 +18,10 @@ set -ex
     --enable-cider \
     --with-readline=yes \
     --enable-openmp \
-    --with-ngshared \
-    --with-x
+    ${WITH_OPTION}
 
 # Not enabled for now:
 #  --enable-adms
 #
 make -j${CPU_COUNT}
 make install
-
-# Binary is always built, but if we are building the "library only"
-# remove it from the install directory so it doesn't get packaged up
-if [[ ${PKG_NAME} != "ngspice-exe" ]]; then
-    rm -f ${PREFIX}/bin/ngspice
-fi
