@@ -3,14 +3,6 @@ set -ex
 
 ./autogen.sh
 
-# --with-ngshared is always built, but since `ngspice-exe` depends
-# on ngspice-lib, the "shared libraries" will only be included in the ngspice-lib package
-if [[ ${PKG_NAME} == "ngspice-exe" ]]; then
-    WITH_X="--with-x"
-else
-    WITH_X=""
-fi
-
 ./configure \
     --prefix=${PREFIX} \
     --enable-xspice \
@@ -20,9 +12,16 @@ fi
     --with-readline=yes \
     --enable-openmp \
     --with-ngshared \
-    ${WITH_X}
+    --with-x
 
 # Not enabled for now:
 #  --enable-adms
 #
-make install -j${CPU_COUNT}
+make -j${CPU_COUNT}
+make install
+
+# Binary is always built, but if we are building the "library only"
+# remove it from the install directory so it doesn't get packaged up
+if [[ ${PKG_NAME} != "ngspice-exe" ]]; then
+    rm -f ${PREFIX}/bin/ngspice
+fi
