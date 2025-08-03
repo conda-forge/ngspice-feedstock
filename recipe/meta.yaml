@@ -60,7 +60,7 @@ outputs:
     test:
       commands:
         - test -f $PREFIX/lib/libngspice{{ SHLIB_EXT }}            # [unix]
-        - if not exist %LIBRARY_PREFIX%\\bin\\ngspice.dll exit 1   # [unix]
+        - if not exist %LIBRARY_PREFIX%\\bin\\ngspice.dll exit 1   # [win]
 
   - name: ngspice-exe
     script: build_common.sh   # [unix]
@@ -108,7 +108,7 @@ outputs:
     test:
       files: test-files
       commands:
-        - ngspice --version                                  # [unix]
+        - ngspice --version                             # [unix]
         - ngspice -b -r raw.out test-files/test.cir     # [unix]
 
         - ngspice_con --version                          # [win]
