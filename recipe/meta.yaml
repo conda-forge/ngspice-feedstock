@@ -106,13 +106,12 @@ outputs:
         - xorg-libxt   # [unix]
 
     test:
-      files: test-files
+      files: test-cir
       commands:
-        - ngspice --version                             # [unix]
-        - ngspice -b -r raw.out test-files/test.cir     # [unix]
-
+        - ngspice --version
+        - ngspice -b -r raw.out test.cir
+        # Console specific commandline program for windows only
         - ngspice_con --version                          # [win]
-        - ngspice_con -b -r raw.out test-files\test.cir  # [win]
 
   - name: ngspice
     requirements:
@@ -122,11 +121,12 @@ outputs:
 
     test:
       commands:
-        - test -f $PREFIX/lib/libngspice{{ SHLIB_EXT }}           # [unix]
-        - ngspice --version                                       # [unix]
-
-        - if not exist %LIBRARY_PREFIX%\\bin\\ngspice.dll exit 1  # [win]
+        - ngspice --version
+        # Console specific commandline program for windows only
         - ngspice_con.exe --version                               # [win]
+
+        - test -f $PREFIX/lib/libngspice{{ SHLIB_EXT }}           # [unix]
+        - if not exist %LIBRARY_PREFIX%\\bin\\ngspice.dll exit 1  # [win]
 
 about:
   home: http://ngspice.sourceforge.net
