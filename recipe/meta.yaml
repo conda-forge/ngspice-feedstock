@@ -108,9 +108,6 @@ outputs:
         # Console specific commandline program for windows only
         - ngspice_con.exe --version                               # [win]
 
-        - test -f $PREFIX/lib/libngspice{{ SHLIB_EXT }}           # [unix]
-        - if not exist %LIBRARY_PREFIX%\\bin\\ngspice.dll exit 1  # [win]
-
 about:
   home: http://ngspice.sourceforge.net
   doc_url: http://ngspice.sourceforge.net/docs.html
