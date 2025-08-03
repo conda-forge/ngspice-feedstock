@@ -89,7 +89,7 @@ outputs:
         - {{ pin_subpackage('ngspice-lib', exact=True) }}
 
     test:
-      files: test-cir
+      files: test.cir
       commands:
         - ngspice --version
         - ngspice -b -r raw.out test.cir
