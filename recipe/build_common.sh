@@ -25,4 +25,4 @@ fi
 # Not enabled for now:
 #  --enable-adms
 #
-make install
+make install -j${CPU_COUNT}
