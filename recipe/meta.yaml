@@ -29,7 +29,7 @@ outputs:
       build:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
-        - {{ stdlib("c") }}
+        - {{ stdlib('c') }}
         - llvm-openmp  # [osx]
         - libgomp      # [linux]
         - autoconf     # [unix]
@@ -50,12 +50,6 @@ outputs:
         # technically this ought to be in the 'build' requirements,
         # but it's easier to locate if we put it here, via LIBRARY_BIN
         - winflexbison   # [win]
-
-      run:
-        - llvm-openmp  # [osx]
-        - libgomp      # [linux]
-        - ncurses      # [unix]
-        - readline     # [unix]
 
     test:
       commands:
@@ -70,7 +64,7 @@ outputs:
       build:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
-        - {{ stdlib("c") }}
+        - {{ stdlib('c') }}
         - llvm-openmp  # [osx]
         - libgomp      # [linux]
         - autoconf     # [unix]
@@ -97,13 +91,6 @@ outputs:
 
       run:
         - {{ pin_subpackage('ngspice-lib', exact=True) }}
-        - llvm-openmp  # [osx]
-        - libgomp      # [linux]
-        - ncurses      # [unix]
-        - readline     # [unix]
-        - xorg-libx11  # [unix]
-        - xorg-libxaw  # [unix]
-        - xorg-libxt   # [unix]
 
     test:
       files: test-cir
