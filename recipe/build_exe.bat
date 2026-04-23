@@ -27,7 +27,7 @@ dir ..\..\flex-bison
 
 msbuild.exe ^
   /p:Platform=%PLATFORM% ^
-  /p:PlatformToolset=v141 ^
+  /p:PlatformToolset=v143 ^
   /p:WindowsTargetPlatformVersion=10.0.17763.0 ^
   /p:Configuration=console_release_omp ^
   /p:PostBuildEvent="" ^
@@ -44,7 +44,7 @@ call make-install-vngspice.bat vngspice\console_release_omp.x64\ngspice_con.exe 
 
 msbuild.exe ^
   /p:Platform=%PLATFORM% ^
-  /p:PlatformToolset=v141 ^
+  /p:PlatformToolset=v143 ^
   /p:WindowsTargetPlatformVersion=10.0.17763.0 ^
   /p:Configuration=ReleaseOMP ^
   /p:PostBuildEvent="" ^

@@ -1,106 +1,99 @@
-{% set name = "ngspice-suite" %}
 {% set version = "41" %}
 
 package:
-  name: {{ name|lower }}
+  name: ngspice-suite
   version: {{ version }}
 
 source:
-
-  url: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/{{ version }}/ngspice-{{ version }}.tar.gz
+  url: https://downloads.sourceforge.net/project/ngspice/ng-spice-rework/old-releases/{{ version }}/ngspice-{{ version }}.tar.gz
   sha256: 1ce219395d2f50c33eb223a1403f8318b168f1e6d1015a7db9dbf439408de8c4
 
   patches:
-    - patches/libtoolize-name.patch            # [osx]
-    - patches/fix-xspice-ldflags.patch         # [osx]
+    - patches/libtoolize-name.patch
+    - patches/fix-xspice-ldflags.patch
     - patches/vngspice-install-location.patch  # [win]
 
 build:
-  number: 0
-  skip: true  # [win and vc<14]
+  number: 1
 
-# Due to how 'conda render' extracts metadata info, the 'outputs'
-# key must appear OUTSIDE of the jinja conditional below!
 outputs:
-
-##
-## UNIX
-##
-{% if unix %}
-
   - name: ngspice-lib
-    script: build_lib.sh
+    script: build_common.sh   # [unix]
+    script: build_lib.bat     # [win]
 
     requirements:
       build:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
         - llvm-openmp  # [osx]
         - libgomp      # [linux]
-        - autoconf
-        - automake
-        - make
-        - libtool
-        - texinfo
-        - bison
-        - flex
+        - autoconf     # [unix]
+        - automake     # [unix]
+        - make         # [unix]
+        - libtool      # [unix]
+        - texinfo      # [unix]
+        - bison        # [unix]
+        - flex         # [unix]
 
       host:
         - llvm-openmp  # [osx]
         - libgomp      # [linux]
-        - ncurses
-        - readline
+        - ncurses      # [unix]
+        - readline     # [unix]
 
-      run:
-        - llvm-openmp  # [osx]
-        - libgomp      # [linux]
-        - ncurses
-        - readline
+        # technically this ought to be in the 'build' requirements,
+        # but it's easier to locate if we put it here, via LIBRARY_BIN
+        - winflexbison   # [win]
 
     test:
       commands:
-        - test -f $PREFIX/lib/libngspice{{ SHLIB_EXT }}
+        - test -f $PREFIX/lib/libngspice{{ SHLIB_EXT }}            # [unix]
+        - if not exist %LIBRARY_PREFIX%\\bin\\ngspice.dll exit 1   # [win]
 
   - name: ngspice-exe
-    script: build_exe.sh
+    script: build_common.sh   # [unix]
+    script: build_exe.bat     # [win]
 
     requirements:
       build:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
+        - {{ stdlib('c') }}
         - llvm-openmp  # [osx]
         - libgomp      # [linux]
-        - autoconf
-        - automake
-        - make
-        - libtool
-        - texinfo
-        - bison
-        - flex
+        - autoconf     # [unix]
+        - automake     # [unix]
+        - make         # [unix]
+        - libtool      # [unix]
+        - texinfo      # [unix]
+        - bison        # [unix]
+        - flex         # [unix]
 
       host:
+        - {{ pin_subpackage('ngspice-lib', exact=True) }}
         - llvm-openmp  # [osx]
         - libgomp      # [linux]
-        - ncurses
-        - readline
-        - xorg-libx11
-        - xorg-libxaw
-        - xorg-libxt
+        - ncurses      # [unix]
+        - readline     # [unix]
+        - xorg-libx11  # [unix]
+        - xorg-libxaw  # [unix]
+        - xorg-libxt   # [unix]
+
+        # technically this ought to be in the 'build' requirements,
+        # but it's easier to locate if we put it here, via LIBRARY_BIN
+        - winflexbison   # [win]
 
       run:
-        - llvm-openmp  # [osx]
-        - libgomp      # [linux]
-        - ncurses
-        - readline
-        - xorg-libx11
-        - xorg-libxaw
-        - xorg-libxt
+        - {{ pin_subpackage('ngspice-lib', exact=True) }}
 
     test:
-      files: test-files
+      files: test.cir
       commands:
-        - $PREFIX/bin/ngspice --version
-        - $PREFIX/bin/ngspice -b -r /tmp/raw.out test-files/test.cir
+        - ngspice --version
+        - ngspice -b -r raw.out test.cir
+        # Console specific commandline program for windows only
+        - ngspice_con --version                          # [win]
 
   - name: ngspice
     requirements:
@@ -110,62 +103,9 @@ outputs:
 
     test:
       commands:
-        - test -f $PREFIX/lib/libngspice{{ SHLIB_EXT }}
-        - $PREFIX/bin/ngspice --version
-
-##
-## WINDOWS
-##
-{% else %}
-
-  - name: ngspice-lib
-    script: build_lib.bat
-
-    requirements:
-      build:
-        - {{ compiler('c') }}
-        - {{ compiler('cxx') }}
-
-      host:
-        # technically this ought to be in the 'build' requirements,
-        # but it's easier to locate if we put it here, via LIBRARY_BIN
-        - winflexbison
-
-    test:
-      commands:
-        - if not exist %LIBRARY_PREFIX%\\bin\\ngspice.dll exit 1
-
-  - name: ngspice-exe
-    script: build_exe.bat
-
-    requirements:
-      build:
-        - {{ compiler('c') }}
-        - {{ compiler('cxx') }}
-
-      host:
-        # technically this ought to be in the 'build' requirements,
-        # but it's easier to locate if we put it here, via LIBRARY_BIN
-        - winflexbison
-
-    test:
-      files: test-files
-      commands:
-        - call %LIBRARY_PREFIX%\bin\ngspice_con.exe --version
-        - call %LIBRARY_PREFIX%\bin\ngspice_con.exe -b -r raw.out test-files\test.cir
-
-  - name: ngspice
-    requirements:
-      run:
-        - {{ pin_subpackage('ngspice-lib', exact=True) }}
-        - {{ pin_subpackage('ngspice-exe', exact=True) }}
-
-    test:
-      commands:
-        - if not exist %LIBRARY_PREFIX%\\bin\\ngspice.dll exit 1
-        - '%LIBRARY_PREFIX%\bin\ngspice_con.exe --version'
-
-{% endif %}
+        - ngspice --version
+        # Console specific commandline program for windows only
+        - ngspice_con.exe --version                               # [win]
 
 about:
   home: http://ngspice.sourceforge.net
