@@ -1,0 +1,83 @@
+From f92d6cc90240c8afc3185cde77a1a172b5c66d5b Mon Sep 17 00:00:00 2001
+From: Mark Harfouche <mark.harfouche@gmail.com>
+Date: Sun, 3 Aug 2025 22:45:51 -0400
+Subject: [PATCH 2/2] Address flex-bison needs
+
+---
+ visualc/sharedspice.vcxproj   | 6 +++---
+ visualc/vngspice-fftw.vcxproj | 6 +++---
+ visualc/vngspice.vcxproj      | 4 ++--
+ 3 files changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/visualc/sharedspice.vcxproj b/visualc/sharedspice.vcxproj
+index 17b32b2..b11a6dc 100644
+--- a/visualc/sharedspice.vcxproj
++++ b/visualc/sharedspice.vcxproj
+@@ -2399,16 +2399,16 @@
+   <ItemGroup>
+     <CustomBuild Include="..\src\frontend\parse-bison.y">
+       <Message>invoke win_bison.exe for %(Identity)</Message>
+-      <Command>..\..\flex-bison\win_bison.exe --output=.\tmp-bison\%(Filename).c --defines=.\tmp-bison\%(Filename).h %(Identity) || exit 1</Command>
++      <Command>win_bison.exe --output=.\tmp-bison\%(Filename).c --defines=.\tmp-bison\%(Filename).h %(Identity) || exit 1</Command>
+       <Outputs>.\tmp-bison\%(Filename).c;.\tmp-bison\%(Filename).h</Outputs>
+     </CustomBuild>
+     <CustomBuild Include="..\src\spicelib\parser\inpptree-parser.y">
+       <Message>invoke win_bison.exe for %(Identity)</Message>
+-      <Command>..\..\flex-bison\win_bison.exe --output=.\tmp-bison\%(Filename).c --defines=.\tmp-bison\%(Filename).h %(Identity) || exit 1</Command>
++      <Command>win_bison.exe --output=.\tmp-bison\%(Filename).c --defines=.\tmp-bison\%(Filename).h %(Identity) || exit 1</Command>
+       <Outputs>.\tmp-bison\%(Filename).c;.\tmp-bison\%(Filename).h</Outputs>
+     </CustomBuild>
+   </ItemGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+   <ImportGroup Label="ExtensionTargets">
+   </ImportGroup>
+-</Project>
+\ No newline at end of file
++</Project>
+diff --git a/visualc/vngspice-fftw.vcxproj b/visualc/vngspice-fftw.vcxproj
+index e579d5b..c31ce7b 100644
+--- a/visualc/vngspice-fftw.vcxproj
++++ b/visualc/vngspice-fftw.vcxproj
+@@ -2869,16 +2869,16 @@ lib /machine:x64 /def:..\..\fftw-3.3-dll64\libfftw3-3.def /out:$(IntDir)libfftw3
+   <ItemGroup>
+     <CustomBuild Include="..\src\frontend\parse-bison.y">
+       <Message>invoke win_bison.exe for %(Identity)</Message>
+-      <Command>..\..\flex-bison\win_bison.exe --output=.\tmp-bison\%(Filename).c --defines=.\tmp-bison\%(Filename).h %(Identity) || exit 1</Command>
++      <Command>win_bison.exe --output=.\tmp-bison\%(Filename).c --defines=.\tmp-bison\%(Filename).h %(Identity) || exit 1</Command>
+       <Outputs>.\tmp-bison\%(Filename).c;.\tmp-bison\%(Filename).h</Outputs>
+     </CustomBuild>
+     <CustomBuild Include="..\src\spicelib\parser\inpptree-parser.y">
+       <Message>invoke win_bison.exe for %(Identity)</Message>
+-      <Command>..\..\flex-bison\win_bison.exe --output=.\tmp-bison\%(Filename).c --defines=.\tmp-bison\%(Filename).h %(Identity) || exit 1</Command>
++      <Command>win_bison.exe --output=.\tmp-bison\%(Filename).c --defines=.\tmp-bison\%(Filename).h %(Identity) || exit 1</Command>
+       <Outputs>.\tmp-bison\%(Filename).c;.\tmp-bison\%(Filename).h</Outputs>
+     </CustomBuild>
+   </ItemGroup>
+   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+   <ImportGroup Label="ExtensionTargets">
+   </ImportGroup>
+-</Project>
+\ No newline at end of file
++</Project>
+diff --git a/visualc/vngspice.vcxproj b/visualc/vngspice.vcxproj
+index 665c96a..8d1825a 100644
+--- a/visualc/vngspice.vcxproj
++++ b/visualc/vngspice.vcxproj
+@@ -2884,12 +2884,12 @@
+   <ItemGroup>
+     <CustomBuild Include="..\src\frontend\parse-bison.y">
+       <Message>invoke win_bison.exe for %(Identity)</Message>
+-      <Command>..\..\flex-bison\win_bison.exe --output=.\tmp-bison\%(Filename).c --defines=.\tmp-bison\%(Filename).h %(Identity) || exit 1</Command>
++      <Command>win_bison.exe --output=.\tmp-bison\%(Filename).c --defines=.\tmp-bison\%(Filename).h %(Identity) || exit 1</Command>
+       <Outputs>.\tmp-bison\%(Filename).c;.\tmp-bison\%(Filename).h</Outputs>
+     </CustomBuild>
+     <CustomBuild Include="..\src\spicelib\parser\inpptree-parser.y">
+       <Message>invoke win_bison.exe for %(Identity)</Message>
+-      <Command>..\..\flex-bison\win_bison.exe --output=.\tmp-bison\%(Filename).c --defines=.\tmp-bison\%(Filename).h %(Identity) || exit 1</Command>
++      <Command>win_bison.exe --output=.\tmp-bison\%(Filename).c --defines=.\tmp-bison\%(Filename).h %(Identity) || exit 1</Command>
+       <Outputs>.\tmp-bison\%(Filename).c;.\tmp-bison\%(Filename).h</Outputs>
+     </CustomBuild>
+   </ItemGroup>
+-- 
+2.48.1
+
